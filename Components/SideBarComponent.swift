@@ -76,7 +76,7 @@ struct SideBarComponent : View {
             .padding(.bottom, 25)
             
         } // Contenedor principal
-        .frame(maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.gray.opacity(1))
     }
 }
