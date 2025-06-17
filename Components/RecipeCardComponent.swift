@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RecipeCardComponent : View {
-    let recipe: Recipe
+    let recipe: recipe
     let isFavorite: Bool
     var body: some View {
         VStack{
@@ -63,9 +63,9 @@ struct RecipeCardComponent : View {
     }
 }
 
-struct RecipeCardComponent_Previews:
-    PreviewProvider {
-    static var previews: some View {
-        RecipeCardComponent()
-    }
-}
+//struct RecipeCardComponent_Previews:
+//    PreviewProvider {
+//    static var previews: some View {
+//        RecipeCardComponent()
+//    }
+//}

@@ -6,8 +6,8 @@ struct Ingredient: Codable, Identifiable {
     let categoria: String
 }
 
-class IngredientsService {
-    static let shared = IngredientsService()
+class ingredientsService {
+    static let shared = ingredientsService()
 
     func fetchIngredients(completion: @escaping ([Ingredient]) -> Void) {
         guard let url = URL(string: "") else {return}

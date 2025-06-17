@@ -1,12 +1,14 @@
+import Foundation
+
 class MainPageViewModel: ObservableObject {
-    @Published var recipes: [Recipe] = []
+    @Published var recipes: [recipe] = []
     @Published var ingredients: [Ingredient] = []
     @Published var favorites: [Favorite] = []
 
     init() {
         loadRecipes()
         loadIngredients()
-        loadFavorites()
+        //loadFavorites()
     }
 
     func loadRecipes() {
@@ -31,22 +33,22 @@ class MainPageViewModel: ObservableObject {
         favorites.contains { $0.recetaId == recipeId }
     }
 
-    func toggleFavorite(userId: Int, recipeId: Int) {
-        if let index = favorites.firstIndex(where: { $0.recipeId == recipeId && $0.userId == userId }) {
-            // Eliminar de favoritos
-            FavoritesService.shared.removeFavorite(userId: userId, recipeId: recipeId) { success in
-                if success {
-                    self.favorites.remove(at: index)
-                }
-            }
-        } else {
-            // Agregar a favoritos
-            FavoritesService.shared.addFavorite(userId: userId, recipeId: recipeId) { success in
-                if success {
-                    let newFavorite = Favorite(id: UUID(), userId: userId, recipeId: recipeId)
-                    self.favorites.append(newFavorite)
-                }
-            }
-        }
-    }
+//    func toggleFavorite(userId: Int, recipeId: Int) {
+//        if let index = favorites.firstIndex(where: { $0.recipeId == recipeId && $0.userId == userId }) {
+//            // Eliminar de favoritos
+//            FavoritesService.shared.removeFavorite(userId: userId, recipeId: recipeId) { success in
+//                if success {
+//                    self.favorites.remove(at: index)
+//                }
+//            }
+//        } else {
+//            // Agregar a favoritos
+//            FavoritesService.shared.addFavorite(userId: userId, recipeId: recipeId) { success in
+//                if success {
+//                    let newFavorite = Favorite(id: UUID(), userId: userId, recipeId: recipeId)
+//                    self.favorites.append(newFavorite)
+//                }
+//            }
+//        }
+//    }
 }

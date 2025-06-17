@@ -5,7 +5,7 @@ struct IngredientCardComponent: View {
 
     var body: some View {
         HStack {
-            Vstack {
+            VStack {
                 Text("Nombre")
                 .font(.title3)
                 .foregroundStyle(Color.black)
@@ -13,19 +13,11 @@ struct IngredientCardComponent: View {
                 .font(.title)
                 .foregroundStyle(Color.black)
             }
-            Vstack {
+            VStack {
                 Text("Categoría")
                 .font(.title3)
                 .foregroundStyle(Color.black)
                 Text(ingredient.categoria)
-                .font(.title)
-                .foregroundStyle(Color.black)
-            }
-            Vstack {
-                Text("Cantidad")
-                .font(.title3)
-                .foregroundStyle(Color.black)
-                Text("\(ingredient.cantidad) \(ingredient.unidad)")
                 .font(.title)
                 .foregroundStyle(Color.black)
             }

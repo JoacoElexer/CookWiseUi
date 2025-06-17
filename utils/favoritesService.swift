@@ -6,8 +6,8 @@ struct Favorite: Codable, Identifiable {
     let recetaId: Int
 }
 
-class FavoritesService {
-    static let shared = FavoritesService()
+class favoritesService {
+    static let shared = favoritesService()
 
     func fetchFavorites(completion: @escaping ([Favorite]) -> Void) {
         guard let url = URL(string: "") else {return}

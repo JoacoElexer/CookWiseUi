@@ -11,12 +11,12 @@ struct recipeIngredients: Codable, Identifiable {
 class recipeIngredientsService {
     static let shared = recipeIngredientsService()
 
-    func fetchRecipeIngredients(completion: @escaping ([recipeIngredient]) -> Void) {
+    func fetchRecipeIngredients(completion: @escaping ([recipeIngredients]) -> Void) {
         guard let url = URL(string: "") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data,
-            let recipeIngredients = try? JSONDecoder().decode([recipeIngredient].self, from: data) else {
+            let recipeIngredients = try? JSONDecoder().decode([recipeIngredients].self, from: data) else {
                 DispatchQueue.main.async { completion([]) }
                 return
             }
