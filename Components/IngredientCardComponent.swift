@@ -10,7 +10,7 @@ struct IngredientCardComponent: View {
                 .font(.title3)
                 .foregroundStyle(Color.black)
                 Text(ingredient.nombre)
-                .font(.title)}
+                .font(.title)
                 .foregroundStyle(Color.black)
             }
             Vstack {
