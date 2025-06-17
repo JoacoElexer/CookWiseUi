@@ -74,7 +74,7 @@ struct SideBarComponent : View {
             })
             .buttonStyle(PlainButtonStyle())
             .padding(.bottom, 25)
-            
+            //Añadir Logo de la app
         } // Contenedor principal
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.gray.opacity(1))

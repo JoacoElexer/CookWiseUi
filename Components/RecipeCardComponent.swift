@@ -1,10 +1,7 @@
 import SwiftUI
 
 struct RecipeCardComponent : View {
-//    var nombre: String
-//    var tiempo: Int
-    //
-//    var dificultad: String
+    let recipe: Recipe
     var body: some View {
         VStack{
             HStack {
@@ -15,15 +12,13 @@ struct RecipeCardComponent : View {
                     .padding(.bottom, 5)
             }
             VStack {
-                //Text("\(nombre)")
-                Text("nombre")
+                Text(recipe.nombre)
                     .font(.title)
                     .foregroundStyle(Color.black)
                 Button(action: {
                     print("Boton seleccionado")
                 }, label: {
-                    //Text("Tiempo de preparacion: \(tiempo) min")
-                    Text("20 min")
+                    Text("\(recipe.tiempoDePreparacion) min.")
                         .font(.title3)
                         .foregroundStyle(Color.black)
                 })
@@ -35,8 +30,7 @@ struct RecipeCardComponent : View {
                 Button(action: {
                     print("Boton seleccionado")
                 }, label: {
-                    //Text("Dificultad: \(dificultad)")
-                    Text("Facil")
+                    Text(recipe.dificultad)
                         .font(.title3)
                         .foregroundStyle(Color.black)
                 })
