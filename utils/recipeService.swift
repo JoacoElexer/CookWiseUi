@@ -28,4 +28,27 @@ class recipeService {
             }
         }.resume()
     }
+
+    func addRecipe(_ recipe: NewRecipe, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let data = try JSONEncoder().encode(recipe)
+            request.httpBody = data
+        } catch {
+            print("Error al codificar los datos:", error)
+            completion(false)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { _, response, _ in
+            DispatchQueue.main.async {
+                let success = (response as? HTTPURLResponse)?.statusCode == 201
+                completion(success)
+            }
+        }.resume()
+    }
 }
