@@ -2,9 +2,10 @@ import SwiftUI
 
 struct MainPageView: View {
     @State private var searchText: String = ""
+    @StateObject private var viewModel = MainPageViewModel()
     var body: some View {
         VStack {
-            HStack {
+            HStack { // Buscador
                 TextField("Buscar", text: $searchText)
                     .padding(12)
                     .frame(width: 550, height: 35)
@@ -33,25 +34,74 @@ struct MainPageView: View {
                 .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 4)
                 .padding()
             } // Buscador
-            HStack {
+            
+            HStack { // Titulo
                 Text("Recetas")
                     .font(.title)
                 Spacer()
+                Button(action: {
+                    print("Boton seleccionado")
+                }, label: {
+                    //Text("Dificultad: \(dificultad)")
+                    Text("Nuevo")
+                        .font(.title3)
+                        .foregroundStyle(Color.black)
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.white)
+                        .font(.system(size: 25))
+                })
+                .frame(width: 150, height: 35)
+                .buttonStyle(PlainButtonStyle())
+                .background(Color.blue)
+                .cornerRadius(13)
+                .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 4)
+                .padding()
             } // Titulo
             .frame(width: 750)
-            HStack {
+
+            HStack { // Tarjetas de recetas
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
-                        // ForEach con elementos de api
+                        ForEach(viewModel.recipes) { recipe in 
+                            RecipeCardComponent(recipe: recipe, isFavorite: viewModel.isFavorite(recipeId: recipe.id))
+                        }
                     }
                 }
             } // Tarjetas de recetas
-            HStack {
-                
+
+            HStack { // Titulo de ingredientes
+                Text("Ingredientes disponibles")
+                    .font(.title)
+                Spacer()
+                Button(action: {
+                    print("Boton seleccionado")
+                }, label: {
+                    //Text("Dificultad: \(dificultad)")
+                    Text("Nuevo")
+                        .font(.title3)
+                        .foregroundStyle(Color.black)
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.white)
+                        .font(.system(size: 25))
+                })
+                .frame(width: 150, height: 35)
+                .buttonStyle(PlainButtonStyle())
+                .background(Color.blue)
+                .cornerRadius(13)
+                .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 4)
+                .padding()
             } // Titulo de ingredientes
-            VStack {
-                
+            .frame(width: 750)
+
+            VStack { // Tarjetas de ingredientes
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(viewModel.ingredients) { ingredient in 
+                            IngredientCardComponent(ingredient: ingredient)}
+                    }
+                }
             } // Tarjetas de ingredientes
+
             Spacer()
         }
         .background(Color.gray)
