@@ -2,12 +2,13 @@ import SwiftUI
 
 struct RecipeCardComponent : View {
     let recipe: Recipe
+    let isFavorite: Bool
     var body: some View {
         VStack{
             HStack {
                 Spacer()
-                Image(systemName: "star")
-                    .foregroundColor(.black)
+                Image(systemName: isFavorite ? "star.fill" : "star")
+                    .foregroundColor(isFavorite ? .yellow : .black)
                     .font(.system(size: 25))
                     .padding(.bottom, 5)
             }
