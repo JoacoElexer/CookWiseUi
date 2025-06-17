@@ -11,7 +11,7 @@ struct recipeIngredients: Codable, Identifiable {
 class recipeIngredientsService {
     static let shared = recipeIngredientsService()
 
-    func fetchIngredients(completion: @escaping ([recipeIngredient]) -> Void) {
+    func fetchRecipeIngredients(completion: @escaping ([recipeIngredient]) -> Void) {
         guard let url = URL(string: "") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in

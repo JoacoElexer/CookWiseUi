@@ -11,7 +11,7 @@ struct user: Codable, Identifiable {
 class userService {
     static let shared = userService()
 
-    func fetchIngredients(completion: @escaping ([user]) -> Void) {
+    func fetchUsers(completion: @escaping ([user]) -> Void) {
         guard let url = URL(string: "") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in

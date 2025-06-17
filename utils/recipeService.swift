@@ -13,7 +13,7 @@ struct recipe: Codable, Identifiable {
 class recipeService {
     static let shared = recipeService()
 
-    func fetchIngredients(completion: @escaping ([recipe]) -> Void) {
+    func fetchRecipes(completion: @escaping ([recipe]) -> Void) {
         guard let url = URL(string: "") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
