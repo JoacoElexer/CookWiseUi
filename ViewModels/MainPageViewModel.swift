@@ -1,4 +1,4 @@
-class RecipeDetailsViewModel: ObservableObject {
+class MainPageViewModel: ObservableObject {
     @Published var recipes: [Recipe] = []
     @Published var ingredients: [Ingredient] = []
     @Published var favorites: [Favorite] = []
@@ -21,9 +21,9 @@ class RecipeDetailsViewModel: ObservableObject {
         }
     }
 
-    func loadFavorites() {
-        favoritesService.shared.fetchFavorites { favorites in
-            self.favorites = favorites
+    func loadFavorites(for userId: Int) {
+        favoritesService.shared.fetchFavorites { AllFavorites in
+            self.favorites = AllFavorites.filter { $0.usuarioId == userId }
         }
     }
 
