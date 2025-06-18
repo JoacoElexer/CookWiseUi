@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AccountView: View {
+    let user: User
     var body: some View {
         VStack {
             HStack {
@@ -20,7 +21,7 @@ struct AccountView: View {
                             .foregroundColor(.black)
                     }
                     HStack {
-                        Text("Joaco Vrz")
+                        Text(user.usuario)
                             .font(.title)
                             .foregroundColor(.black)
                     }
@@ -62,7 +63,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text("Joaquin Valois")
+                            Text(user.nombre)
                                 .font(.title)
                                 .foregroundColor(.black)
                         }
@@ -98,7 +99,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text("jvr.lasallebajio.edu.mx")
+                            Text(user.email)
                                 .font(.title)
                                 .foregroundColor(.black)
                         }
@@ -134,7 +135,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text("*************")
+                            Text(user.contraseña)
                                 .font(.title)
                                 .foregroundColor(.black)
                         }
@@ -184,7 +185,7 @@ struct AccountView: View {
                     }, label: {
                         Text("Favoritos")
                             .font(.title3)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.black)
                         Image(systemName: "star")
                             .foregroundColor(Color.black)
                             .font(.system(size: 25))

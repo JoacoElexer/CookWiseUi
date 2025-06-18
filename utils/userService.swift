@@ -5,7 +5,7 @@ struct User: Codable, Identifiable {
     let usuario: String
     let nombre: String
     let email: String
-    let contrasena: String
+    let contraseña: String
 }
 
 class userService {
