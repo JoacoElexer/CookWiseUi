@@ -44,7 +44,9 @@ struct FavoritesView: View {
             FavoritesGridViewComponent(recipes: viewModel.recipes)
             Spacer()
         }
-        .background(Color.gray)
+        .background(
+            LinearGradient(colors: [Color("mainView1").opacity(0), Color("mainView2")], startPoint: .top, endPoint: .bottom)
+        )
     }
 }
 

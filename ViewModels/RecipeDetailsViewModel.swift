@@ -22,14 +22,24 @@ class RecipeDetailsViewModel: ObservableObject {
     }
 
     func loadIngredients() {
-        ingredientsService.shared.fetchIngredients { ingredients in
-            self.ingredients = ingredients
+        Task {
+            do {
+                let ingredients = try await ingredientsService.shared.fetchIngredients()
+                self.ingredients = ingredients
+            } catch {
+                print("Error cargando ingredientes")
+            }
         }
     }
 
     func loadFavorites() {
-        favoritesService.shared.fetchFavorites { favorites in
-            self.favorites = favorites
+        Task {
+            do {
+                let favorites = try await favoritesService.shared.fetchFavorites()
+                self.favorites = favorites
+            } catch {
+                print("Error cargando favoritos")
+            }
         }
     }
 

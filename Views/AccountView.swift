@@ -45,7 +45,9 @@ struct AccountView: View {
                     .padding(30)
                 }
             } // Hstack de Cuenta
-            .background(Color.gray)
+            .background(
+                LinearGradient(colors: [Color("recipeDetailsContent1"), Color("recipeDetailsContent2")], startPoint: .bottom, endPoint: .top)
+            )
             .cornerRadius(15)
             .padding(.horizontal, 35)
             .padding(.top, 35)
@@ -184,25 +186,29 @@ struct AccountView: View {
                             .font(.title3)
                             .foregroundStyle(Color.white)
                         Image(systemName: "star")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.black)
                             .font(.system(size: 25))
                     })
                     .frame(width: 150, height: 35)
                     .buttonStyle(PlainButtonStyle())
-                    .background(Color.yellow)
+                    .background(Color("favoritesButton"))
                     .cornerRadius(13)
                     .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 4)
                     .padding(.horizontal, 30)
                 }
                 .padding(.vertical, 20)
             } // Vstack de contenidos
-            .background(Color.gray)
+            .background(
+                LinearGradient(colors: [Color("recipeDetailsContent1"), Color("recipeDetailsContent2")], startPoint: .top, endPoint: .bottom)
+            )
             .cornerRadius(15)
             .padding(.horizontal, 35)
             .padding(.top, 10)
             .padding(.bottom, 35)
         } // Vstack main
-        .background(Color.orange)
+        .background(
+            LinearGradient(colors: [Color("accountViewMain1"), Color("accountViewMain2")], startPoint: .top, endPoint: .bottom)
+        )
         .cornerRadius(25)
     }
 }

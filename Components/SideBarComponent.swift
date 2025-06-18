@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct SideBarComponent : View {
+    @Binding var pantallaSeleccionada: PantallaSeleccionada
     var body: some View {
         VStack {
             Button(action: {
+                pantallaSeleccionada = .account
                 print("Boton de perfil seleccionado")
             }, label: {
                 Image(systemName: "person")
@@ -17,6 +19,7 @@ struct SideBarComponent : View {
             .padding(10)
             Spacer()
             Button(action: {
+                pantallaSeleccionada = .home
                 print("Boton Home seleccionado")
             }, label: {
                 Image(systemName: "house")
@@ -39,6 +42,7 @@ struct SideBarComponent : View {
             .buttonStyle(PlainButtonStyle())
             .padding(10)
             Button(action: {
+                pantallaSeleccionada = .favorites
                 print("Boton Favorites seleccionado")
             }, label: {
                 Image(systemName: "star")
@@ -80,7 +84,7 @@ struct SideBarComponent : View {
                 .frame(width: 50)
                 .padding(.bottom, 20)
         } // Contenedor principal
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: 100, maxHeight: .infinity)
         .background(
             LinearGradient(colors: [Color("sideBar1"), Color.black], startPoint: .top, endPoint: .bottom)
                 .opacity(0.25)

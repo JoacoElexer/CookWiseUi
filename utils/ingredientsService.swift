@@ -1,29 +1,34 @@
 import Foundation
 
 struct Ingredient: Codable, Identifiable {
-    let id: Int
+    let id: UUID
     let nombre: String
     let categoria: String
 }
 
 class ingredientsService {
     static let shared = ingredientsService()
-
-    func fetchIngredients(completion: @escaping ([Ingredient]) -> Void) {
-        print("Fetching ingredients...")
-        
-        guard let url = URL(string: "https://cookwise123.duckdns.org/ingredientes") else {return}
-
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data,
-            let ingredients = try? JSONDecoder().decode([Ingredient].self, from: data) else {
-                DispatchQueue.main.async { completion([]) }
-                return
+    
+    func fetchIngredients() async throws -> [Ingredient] {
+        guard let url = URL(string: "https://cookwiseapi123.duckdns.org/ingredientes") else {
+            print("url invalida")
+            throw URLError(.badURL)
+        }
+        print(url)
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            print("Verificando httpResponse")
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                print("error en HTTPURLResponse")
+                throw URLError(.badServerResponse)
             }
-
-            DispatchQueue.main.async {
-                completion(ingredients)
-            }
-        }.resume()
+            let ingredients = try JSONDecoder().decode([Ingredient].self, from: data)
+            print("Decodificacion exitosa")
+            return ingredients
+        } catch {
+            print("Error en la solicitud \(error)")
+            throw error
+        }
     }
 }

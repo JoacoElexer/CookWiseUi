@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeListView: View {
     @StateObject var viewModel = MainPageViewModel()
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal, showsIndicators: true) {
             HStack(spacing: 16) {
                 ForEach(viewModel.recipes) { Recipe in
                     RecipeCardComponent(recipe: Recipe)

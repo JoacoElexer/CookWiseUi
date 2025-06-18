@@ -53,7 +53,7 @@ struct RecipeCardComponent : View {
                 })
                 .frame(width: 200, height: 50)
                 .buttonStyle(PlainButtonStyle())
-                .background(Color.white)
+                .background(Color("detailsButton").opacity(0.8))
                 .cornerRadius(13)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 4)
                 .padding()

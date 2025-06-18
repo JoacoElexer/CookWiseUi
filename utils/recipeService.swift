@@ -1,7 +1,7 @@
 import Foundation
 
 struct Recipe: Codable, Identifiable {
-    let id: String
+    let id: UUID
     let nombre: String
     let descripcion: String
     let pasos: String

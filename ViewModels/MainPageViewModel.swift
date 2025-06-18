@@ -7,7 +7,7 @@ class MainPageViewModel: ObservableObject {
 
     init() {
         loadRecipes()
-        //loadIngredients()
+        loadIngredients()
         //loadFavorites()
     }
 
@@ -23,14 +23,24 @@ class MainPageViewModel: ObservableObject {
     }
 
     func loadIngredients() {
-        ingredientsService.shared.fetchIngredients { ingredients in
-            self.ingredients = ingredients
+        Task {
+            do {
+                let ingredients = try await ingredientsService.shared.fetchIngredients()
+                self.ingredients = ingredients
+            } catch {
+                print("Error cargando ingredientes")
+            }
         }
     }
 
     func loadFavorites(for userId: Int) {
-        favoritesService.shared.fetchFavorites { AllFavorites in
-            self.favorites = AllFavorites.filter { $0.usuarioId == userId }
+        Task {
+            do {
+                let favorites = try await favoritesService.shared.fetchFavorites()
+                self.favorites = favorites
+            } catch {
+                print("Error cargando favoritos")
+            }
         }
     }
 

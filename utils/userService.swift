@@ -1,6 +1,6 @@
 import Foundation
 
-struct user: Codable, Identifiable {
+struct User: Codable, Identifiable {
     let id: Int
     let usuario: String
     let nombre: String
@@ -10,20 +10,27 @@ struct user: Codable, Identifiable {
 
 class userService {
     static let shared = userService()
-
-    func fetchUsers(completion: @escaping ([user]) -> Void) {
-        guard let url = URL(string: "") else {return}
-
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data,
-            let users = try? JSONDecoder().decode([user].self, from: data) else {
-                DispatchQueue.main.async { completion([]) }
-                return
+    
+    func fetchUsers() async throws -> [User] {
+        guard let url = URL(string: "https://cookwiseapi123.duckdns.org/usuarios") else {
+            print("url invalida")
+            throw URLError(.badURL)
+        }
+        print(url)
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            print("Verificando httpResponse")
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                print("error en HTTPURLResponse")
+                throw URLError(.badServerResponse)
             }
-
-            DispatchQueue.main.async {
-                completion(users)
-            }
-        }.resume()
+            let users = try JSONDecoder().decode([User].self, from: data)
+            print("Decodificacion exitosa")
+            return users
+        } catch {
+            print("Error en la solicitud \(error)")
+            throw error
+        }
     }
 }
