@@ -2,6 +2,9 @@
 Interfaz de usuario para macOS desarrollada en SwiftUI.
 CookWise permite buscar recetas, explorar resultados, ver detalles y gestionar favoritos. Todo el consumo de datos se realiza desde un backend ya existente mediante una API REST.
 
+# ¡IMPORTANTE!
+Para que el proyecto sea funcional y pueda ser visible es necesario hacer un proyecto propio y agregar "ContentViewer()" al archivo "ContentView" del proyecto, además se debe de añadir la carpeta "CookWiseUi" al nuevo proyecto - Esto debido a que el proyecto se trabajó en gran parte en archivos de vscode generados en windows
+
 ## Tecnologías utilizadas:
 - Swift 5
 - SwiftUI (Interfaz nativa macOS)
