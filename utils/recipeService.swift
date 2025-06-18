@@ -1,55 +1,37 @@
 import Foundation
 
-struct recipe: Codable, Identifiable {
-    let id: Int
+struct Recipe: Codable, Identifiable {
+    let id: String
     let nombre: String
     let descripcion: String
     let pasos: String
     let tiempoDePreparacion: Int
     let dificultad: String
-    let imagen: String
 }
 
 class recipeService {
     static let shared = recipeService()
-
-    func fetchRecipes(completion: @escaping ([recipe]) -> Void) {
-        print("Fetching recipes...")
-        guard let url = URL(string: "http://143.244.165.113:8080/recetas") else {return}
-
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data,
-            let recipes = try? JSONDecoder().decode([recipe].self, from: data) else {
-                DispatchQueue.main.async { completion([]) }
-                return
+    
+    func fetchRecipes() async throws -> [Recipe] {
+        guard let url = URL(string: "https://cookwiseapi123.duckdns.org/recetas") else {
+            print("url invalida")
+            throw URLError(.badURL)
+        }
+        print(url)
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            print("Verificando httpResponse")
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                print("error en HTTPURLResponse")
+                throw URLError(.badServerResponse)
             }
-
-            DispatchQueue.main.async {
-                completion(recipes)
-            }
-        }.resume()
+            let recipes = try JSONDecoder().decode([Recipe].self, from: data)
+            print("Decodificacion exitosa")
+            return recipes
+        } catch {
+            print("Error en la solicitud \(error)")
+            throw error
+        }
     }
-
-//    func addRecipe(_ recipe: NewRecipe, completion: @escaping (Bool) -> Void) {
-//        guard let url = URL(string: "") else { return }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        do {
-//            let data = try JSONEncoder().encode(recipe)
-//            request.httpBody = data
-//        } catch {
-//            print("Error al codificar los datos:", error)
-//            completion(false)
-//            return
-//        }
-//
-//        URLSession.shared.dataTask(with: request) { _, response, _ in
-//            DispatchQueue.main.async {
-//                let success = (response as? HTTPURLResponse)?.statusCode == 201
-//                completion(success)
-//            }
-//        }.resume()
-//    }
 }

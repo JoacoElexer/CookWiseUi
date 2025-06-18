@@ -1,6 +1,6 @@
 import Foundation
 class RecipeDetailsViewModel: ObservableObject {
-    @Published var recipes: [recipe] = []
+    @Published var recipes: [Recipe] = []
     @Published var ingredients: [Ingredient] = []
     @Published var favorites: [Favorite] = []
 
@@ -11,8 +11,13 @@ class RecipeDetailsViewModel: ObservableObject {
     }
 
     func loadRecipes() {
-        recipeService.shared.fetchRecipes { recipes in
-            self.recipes = recipes
+        Task {
+            do {
+                let recipes = try await recipeService.shared.fetchRecipes()
+                self.recipes = recipes
+            } catch {
+                print("Error cargando recetas")
+            }
         }
     }
 

@@ -12,7 +12,7 @@ class ingredientsService {
     func fetchIngredients(completion: @escaping ([Ingredient]) -> Void) {
         print("Fetching ingredients...")
         
-        guard let url = URL(string: "http://143.244.165.113:8080/ingredientes") else {return}
+        guard let url = URL(string: "https://cookwise123.duckdns.org/ingredientes") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data,

@@ -60,13 +60,7 @@ struct MainPageView: View {
             .frame(width: 750)
 
             HStack { // Tarjetas de recetas
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        ForEach(viewModel.recipes) { recipe in 
-                            RecipeCardComponent(recipe: recipe, isFavorite: viewModel.isFavorite(recipeId: recipe.id))
-                        }
-                    }
-                }
+                RecipeListView()
             } // Tarjetas de recetas
 
             HStack { // Titulo de ingredientes
