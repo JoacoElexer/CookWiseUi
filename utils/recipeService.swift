@@ -14,7 +14,8 @@ class recipeService {
     static let shared = recipeService()
 
     func fetchRecipes(completion: @escaping ([recipe]) -> Void) {
-        guard let url = URL(string: "") else {return}
+        print("Fetching recipes...")
+        guard let url = URL(string: "http://143.244.165.113:8080/recetas") else {return}
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data,
