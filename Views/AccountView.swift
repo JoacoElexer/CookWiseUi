@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct AccountView: View {
-    let user: User
     var body: some View {
         VStack {
             HStack {
@@ -21,7 +20,7 @@ struct AccountView: View {
                             .foregroundColor(.black)
                     }
                     HStack {
-                        Text(user.usuario)
+                        Text("andresdev")
                             .font(.title)
                             .foregroundColor(.black)
                     }
@@ -63,7 +62,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text(user.nombre)
+                            Text("Andres Aguilera")
                                 .font(.title)
                                 .foregroundColor(.black)
                         }
@@ -99,7 +98,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text(user.email)
+                            Text("andres@example.com")
                                 .font(.title)
                                 .foregroundColor(.black)
                         }
@@ -135,7 +134,7 @@ struct AccountView: View {
                                 .padding(.bottom, 2)
                         }
                         HStack {
-                            Text(user.contraseña)
+                            Text("clave123")
                                 .font(.title)
                                 .foregroundColor(.black)
                         }

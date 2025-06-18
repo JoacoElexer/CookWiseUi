@@ -16,7 +16,6 @@ enum PantallaSeleccionada {
 struct ContentViewer: View {
     @StateObject var viewModel1 = MainPageViewModel()
     @StateObject var viewModel2 = AccountViewModel()
-    let User: User
     @State private var pantallaSeleccionada: PantallaSeleccionada = .home
     var screen = NSScreen.main!.visibleFrame
     var body: some View {
@@ -28,7 +27,7 @@ struct ContentViewer: View {
             case .favorites:
                 FavoritesView()
             case .account:
-                AccountView(user: User)
+                AccountView()
             }
         }
         .background(
